@@ -18,6 +18,6 @@ export class CustomersService {
   }
 
   getAllCustomers(){
-    return this.httpClient.get(`${environment.APIURL}/login`)
+    return this.httpClient.get(`${environment.APIURL}`)
   }
 }

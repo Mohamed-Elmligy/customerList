@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <h1 class="col-3">Customer App</h1>
+        <div class="col-1 mt-3 ms-auto ">
+            <a class=" btn btn-primary" routerLink="list">+</a>
+        </div>
+    </div>
+    <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">City</th>
+            <th scope="col">Adress</th>
+            <th scope="col">Phone</th>
+            <th scope="col align-middle ms-auto">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customerList| keyvalue ;let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{getData(customer.value,'customer_name')}}</td>
+            <td>{{getData(customer.value,'city')}}</td>
+            <td>{{getData(customer.value,'phone')}}</td>
+            <td>{{getData(customer.value,'address')}}</td>
+            <!-- <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td> -->
+            <td><a class="btn btn-info me-1" routerLink="list">Edit</a><a class="btn btn-danger">Remove</a></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
