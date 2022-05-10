@@ -1,38 +1,45 @@
-<div class="container">
-    <h2 class="text-center">customer name</h2>
+<div class="container top-space ">
+  <h2 class="text-center">customer name</h2>
+  <form #cusFrm="ngForm">
+    <div class="row">
+
+      <div class="input-group mb-3 col">
+        <span class="input-group-text" id="basic-addon1" for="customerName">Customer Name</span>
+        <input #cusName="ngModel" [(ngModel)]="newCustomer" required pattern="[A-Za-z]{3,}" type="text" class="form-control" id="customerName"
+          placeholder="Enter customer name" aria-label="Customername" aria-describedby="basic-addon1">
+        <div class="alert alert-warning" [hidden]="cusName.valid || cusName.untouched">
+          <small *ngIf="cusName.errors?.['required']"> Name is required</small>
+          <small *ngIf="cusName.errors?.['pattern']"> Name must be 3 letters at least</small>
+        </div>
+      </div>
+
+      <div class="input-group mb-3 col">
+        <span class="input-group-text" id="basic-addon2">ID Number</span>
+        <input type="text" class="form-control" placeholder="Enter id number" aria-label="id number"
+          aria-describedby="basic-addon2">
+      </div>
+    </div>
 
     <div class="row">
-        <div class="input-group mb-3 col">
-            <span class="input-group-text" id="basic-addon1">Customer Name</span>
-            <input type="text" class="form-control" placeholder="enter customer name" aria-label="Customername" aria-describedby="basic-addon1">
-          </div>
+      <div class="input-group mb-3 col">
+        <span class="input-group-text" id="basic-addon2">Phone</span>
+        <input type="text" class="form-control" placeholder="Enter a phone" aria-label="phone"
+          aria-describedby="basic-addon2">
+      </div>
 
-          <div class="input-group mb-3 col">
-            <span class="input-group-text" id="basic-addon2">ID Number</span>
-            <input type="number" class="form-control" placeholder="enter id number" aria-label="id number" aria-describedby="basic-addon2"> 
-          </div>
+      <div class="input-group mb-3 col">
+        <span class="input-group-text" id="basic-addon1">City</span>
+        <input type="text" class="form-control" placeholder="Enter customer city" aria-label="Customername"
+          aria-describedby="basic-addon1">
+      </div>
     </div>
-   
-      <div class="row">
-        <div class="input-group mb-3 col">
-            <span class="input-group-text" id="basic-addon2">Phone</span>
-            <input type="number" class="form-control" placeholder="enter a phone" aria-label="phone" aria-describedby="basic-addon2"> 
-          </div>
-    
-          <div class="input-group mb-3 col">
-            <span class="input-group-text" id="basic-addon1">City</span>
-            <input type="text" class="form-control" placeholder="enter customer city" aria-label="Customername" aria-describedby="basic-addon1">
-          </div>
-      </div> 
-      <div class="input-group">
-        <span class="input-group-text">Adress</span>
-        <textarea class="form-control" aria-label="With textarea" placeholder="enter the addriess"></textarea>
-      </div>
-      <div class="row">
-        <a class="btn btn-success offset-11 col-1 my-2" routerLink="">Save</a>
-      </div>
-      
+    <div class="input-group">
+      <span class="input-group-text">Adress</span>
+      <textarea class="form-control" aria-label="With textarea" placeholder="Enter the addriess"></textarea>
+    </div>
+    <div class="row">
+      <a class="btn btn-success offset-11 col-1 my-2" routerLink="">Save</a>
+    </div>
+
+  </form>
 </div>
-
-
-

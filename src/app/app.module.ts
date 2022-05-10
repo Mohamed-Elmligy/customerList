@@ -7,17 +7,20 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { CustomersService } from './services/customers.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule }   from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+          
   ],
   imports: [
     BrowserModule,
     HttpClientModule ,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
+
   ],
   providers: [
     CustomersService
