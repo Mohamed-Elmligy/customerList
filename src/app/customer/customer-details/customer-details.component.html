@@ -28,22 +28,22 @@
     
     <mat-form-field appearance="outline" class="col">
       <mat-label>Customer Name </mat-label>
-      <input matInput  placeholder="Placeholder" required type="text" formControlName="customerName" class="text-white">
+      <input matInput  placeholder="Placeholder" required type="text" formControlName="customer_name" class="text-white">
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
       <mat-hint>Min Name 2 letters and Max Nams 18 letters</mat-hint>
-      <mat-error *ngIf="customerName?.invalid">{{getErrorMessage(customerName)}}</mat-error>
-      <mat-error *ngIf="customerName?.errors?.['minlength'] && customerName?.touched"> Customer Name is so short</mat-error>
-      <mat-error *ngIf="customerName?.errors?.['maxlength'] && customerName?.touched"> Customer Name is so long</mat-error>
+      <mat-error *ngIf="customer_name?.invalid">{{getErrorMessage(customer_name)}}</mat-error>
+      <mat-error *ngIf="customer_name?.errors?.['minlength'] && customer_name?.touched"> Customer Name is so short</mat-error>
+      <mat-error *ngIf="customer_name?.errors?.['maxlength'] && customer_name?.touched"> Customer Name is so long</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="col">
       <mat-label>ID Number </mat-label>
-      <input matInput placeholder="Placeholder" required type="text" formControlName="idNumber" class="text-white">
-      <mat-error *ngIf="idNumber?.errors?.['minlength'] && idNumber?.touched"> id Number is so short</mat-error>
-      <mat-error *ngIf="idNumber?.errors?.['maxlength'] && idNumber?.touched"> id Number is so long</mat-error>
+      <input matInput placeholder="Placeholder" required type="text" formControlName="id_number" class="text-white">
+      <mat-error *ngIf="id_number?.errors?.['minlength'] && id_number?.touched"> id Number is so short</mat-error>
+      <mat-error *ngIf="id_number?.errors?.['maxlength'] && id_number?.touched"> id Number is so long</mat-error>
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
       <mat-hint>14 Numbers required</mat-hint>
-      <mat-error *ngIf="idNumber?.invalid">{{getErrorMessage(idNumber)}}</mat-error>
+      <mat-error *ngIf="id_number?.invalid">{{getErrorMessage(id_number)}}</mat-error>
     </mat-form-field>
   </div>
 
@@ -57,18 +57,16 @@
       <mat-error *ngIf="phone?.errors?.['minlength'] && phone?.touched"> phone is so short</mat-error>
       <mat-error *ngIf="phone?.errors?.['maxlength'] && phone?.touched"> phone is so long</mat-error>
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
-      <mat-hint>Min Name 2 letters and Max Nams 18 letters</mat-hint>
+      <mat-hint>Phone must be 11 numbers</mat-hint>
       <mat-error *ngIf="phone?.invalid">{{getErrorMessage(phone)}}</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="col">
       <mat-label>City </mat-label>
       <input matInput placeholder="Placeholder" required type="text" formControlName="city" class="text-white">
-      <mat-error *ngIf="city?.errors?.['minlength'] && city?.touched"> city name is so short</mat-error>
-      <mat-error *ngIf="city?.errors?.['maxlength'] && city?.touched"> city name is so long</mat-error>
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
       <mat-error *ngIf="city?.invalid">{{getErrorMessage(city)}}</mat-error>
-      <mat-hint>14 Numbers required</mat-hint>
+      <mat-hint>Must Enter your city</mat-hint>
     </mat-form-field>
   </div>
 
@@ -84,7 +82,7 @@
     </mat-form-field>
   </div>
 
-  <a mat-raised-button color="primary" routerLink="" class="m-2">Primary</a>
+  <a mat-raised-button color="primary" class="m-2" (click)="createcustomer()" >Save</a>
   <a mat-raised-button color="accent" routerLink="" class="m-2">Cancel</a>
   </form>
  

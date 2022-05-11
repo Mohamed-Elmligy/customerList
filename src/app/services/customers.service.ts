@@ -22,7 +22,7 @@ export class CustomersService {
   }
 
   postCustomer(newCustomer:any){
-    return this.httpClient.post(`${environment.APIURL}`, JSON.stringify(newCustomer), this.httpOption
+    return this.httpClient.post(`${environment.APIURL}/customers.json`, newCustomer
     )
   }
 
