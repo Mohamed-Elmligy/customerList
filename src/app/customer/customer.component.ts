@@ -15,12 +15,24 @@ export class CustomerComponent implements OnInit {
 
   
   ngOnInit(): void {
+    this.getAllCustomers();
+    //   throw new Error('Method not implemented.');
+  }
+  
+  getAllCustomers(){
     this.allcustomer.getAllCustomers().subscribe(customers=>{this.customerList=customers})
-     //   throw new Error('Method not implemented.');
+
   }
 
   getData(object:any,key:string){
     return object[key];
+  }
+  
+
+  deleteThatCustomer(cusID:any) {
+    this.allcustomer.deleteCustomer(cusID).subscribe(() =>{
+      this.getAllCustomers();   
+    })
   }
 
 }

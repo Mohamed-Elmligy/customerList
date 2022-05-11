@@ -18,6 +18,15 @@ export class CustomersService {
   }
 
   getAllCustomers(){
-    return this.httpClient.get(`${environment.APIURL}`)
+    return this.httpClient.get(`${environment.APIURL}/customers.json`)
   }
+
+  postCustomer(newCustomer:any){
+    return this.httpClient.post(`${environment.APIURL}`, JSON.stringify(newCustomer), this.httpOption
+    )
+  }
+
+ deleteCustomer(customerID: any) {
+   return this.httpClient.delete(`${environment.APIURL}/customers/${customerID}.json`)
+ }
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIURL: 'https://customers-angular-project-default-rtdb.firebaseio.com/customers.json'
+  APIURL: 'https://customers-angular-project-default-rtdb.firebaseio.com'
 };
 
 /*
