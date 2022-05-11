@@ -24,13 +24,15 @@ export class CustomerDetailsComponent implements OnInit {
     });
   }
 
-  getErrorMessage() {
-    if (this.customerName!.hasError('required')) {
+  getErrorMessage(t:any) {
+    
+    if (t?.hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.customerName!.hasError('') ? 'Not a valid email' : '';
+    return t?.hasError('') ? 'Not a valid' : '';
   }
+  
 
   get customerName() {
     return this.myForm.get('customerName')
@@ -53,9 +55,4 @@ export class CustomerDetailsComponent implements OnInit {
   
   }
 
-  getControlError(control:any) {
-    console.log(control);
-    return true;
-    
-  }
 }

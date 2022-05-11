@@ -28,10 +28,10 @@
     
     <mat-form-field appearance="outline" class="col">
       <mat-label>Customer Name </mat-label>
-      <input matInput placeholder="Placeholder" required type="text" formControlName="customerName" class="text-white">
+      <input matInput  placeholder="Placeholder" required type="text" formControlName="customerName" class="text-white">
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
       <mat-hint>Min Name 2 letters and Max Nams 18 letters</mat-hint>
-      <mat-error *ngIf="customerName?.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="customerName?.invalid">{{getErrorMessage(customerName)}}</mat-error>
       <mat-error *ngIf="customerName?.errors?.['minlength'] && customerName?.touched"> Customer Name is so short</mat-error>
       <mat-error *ngIf="customerName?.errors?.['maxlength'] && customerName?.touched"> Customer Name is so long</mat-error>
     </mat-form-field>
@@ -43,6 +43,7 @@
       <mat-error *ngIf="idNumber?.errors?.['maxlength'] && idNumber?.touched"> id Number is so long</mat-error>
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
       <mat-hint>14 Numbers required</mat-hint>
+      <mat-error *ngIf="idNumber?.invalid">{{getErrorMessage(idNumber)}}</mat-error>
     </mat-form-field>
   </div>
 
@@ -57,6 +58,7 @@
       <mat-error *ngIf="phone?.errors?.['maxlength'] && phone?.touched"> phone is so long</mat-error>
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
       <mat-hint>Min Name 2 letters and Max Nams 18 letters</mat-hint>
+      <mat-error *ngIf="phone?.invalid">{{getErrorMessage(phone)}}</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="col">
@@ -65,6 +67,7 @@
       <mat-error *ngIf="city?.errors?.['minlength'] && city?.touched"> city name is so short</mat-error>
       <mat-error *ngIf="city?.errors?.['maxlength'] && city?.touched"> city name is so long</mat-error>
       <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+      <mat-error *ngIf="city?.invalid">{{getErrorMessage(city)}}</mat-error>
       <mat-hint>14 Numbers required</mat-hint>
     </mat-form-field>
   </div>
@@ -77,6 +80,7 @@
       <mat-error *ngIf="address?.errors?.['minlength'] && address?.touched"> address name is so short</mat-error>
       <mat-error *ngIf="address?.errors?.['maxlength'] && address?.touched"> address name is so long</mat-error>
       <mat-hint>14 Letters required</mat-hint>
+      <mat-error *ngIf="address?.invalid">{{getErrorMessage(address)}}</mat-error>
     </mat-form-field>
   </div>
 
