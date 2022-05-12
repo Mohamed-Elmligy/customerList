@@ -57,6 +57,9 @@ export class CustomerDetailsComponent implements OnInit {
   
   }
 
+  editCustomer(){
+    this.allcustomer.updateCustomer(this.myForm.value).subscribe()
+  }
 
   createcustomer(){
     this.allcustomer.postCustomer(this.myForm.value).subscribe()

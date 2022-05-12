@@ -29,10 +29,20 @@ export class CustomerComponent implements OnInit {
   }
   
 
+  
+  sendKey(customerID:any){
+    console.log(customerID)
+    this.allcustomer.getkey(customerID)
+    
+  }
+
+
   deleteThatCustomer(cusID:any) {
     this.allcustomer.deleteCustomer(cusID).subscribe(() =>{
-      this.getAllCustomers();   
+      this.getAllCustomers(); 
+      console.log(cusID)  
     })
   }
+
 
 }

@@ -5,7 +5,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CustomersService {
+ 
+  public customerKey: any;
 
   httpOption;
   constructor(private httpClient: HttpClient) {
@@ -24,6 +27,17 @@ export class CustomersService {
   postCustomer(newCustomer:any){
     return this.httpClient.post(`${environment.APIURL}/customers.json`, newCustomer
     )
+  }
+
+  getkey(key:any){
+    console.log(key)
+    this.customerKey = key
+    console.log(this.customerKey)
+  }
+
+  updateCustomer(newdata:any) {
+    console.log(this.customerKey)
+    return this.httpClient.put(`${environment.APIURL}/customers/${this.customerKey}.json`, newdata)
   }
 
  deleteCustomer(customerID: any) {

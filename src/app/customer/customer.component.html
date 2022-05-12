@@ -23,10 +23,8 @@
             <td>{{getData(customer.value,'city')}}</td>
             <td>{{getData(customer.value,'phone')}}</td>
             <td>{{getData(customer.value,'address')}}</td>
-            <!-- <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td> -->
-            <td><a class="btn btn-info me-1" routerLink="list">Edit</a><a class="btn btn-danger" (click)="deleteThatCustomer(customer.key)">Remove</a></td>
+            <td><a class="btn btn-info me-1"(click)="sendKey(customer.key)"  routerLink="list">Edit</a>
+              <a class="btn btn-danger" (click)="deleteThatCustomer(customer.key)">Remove</a></td>
           </tr>
         </tbody>
       </table>
