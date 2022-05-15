@@ -1,16 +1,37 @@
+<!--#region item dialog header-->
+
 <h1 mat-dialog-title>Item Details</h1>
+
+<!--#endregion-->
+
+<!--#region dialog content-->
+
 <mat-dialog-content>
+
+    <!--#region item dialog form-->
+
     <form [formGroup]="myForm">
+
+        <!--#region item_name & item_code-->
+
         <div class="row">
+
+            <!--#region item_name-->
+
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Item Name</mat-label>
-                <input matInput required type="text"   formControlName="item_name">
+                <input matInput required type="text" formControlName="item_name">
                 <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_name'])}}
                 </mat-error>
-                <button  matSuffix mat-icon-button aria-label="Clear">
+                <button matSuffix mat-icon-button aria-label="Clear">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
+
+            <!--#endregion-->
+
+            <!--#region item_code-->
+
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Item code</mat-label>
                 <input matInput required type="text" formControlName="item_code">
@@ -20,41 +41,77 @@
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
+
+            <!--#endregion-->
+
         </div>
+        <!--#endregion-->
+
+        <!--#region item_price & item_quantity-->
+
         <div class="row">
+
+            <!--#region item_price-->
+
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Item price</mat-label>
-                <input matInput required type="text"  formControlName="item_price">
-                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_price'])}}
-                </mat-error>
-                <button matSuffix mat-icon-button aria-label="Clear" >
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-            <mat-form-field class="example-form-field col" appearance="outline">
-                <mat-label>Item quantity</mat-label>
-                <input matInput required type="text" formControlName="item_quantity">
-                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_quantity'])}}
+                <input matInput required type="text" formControlName="item_price">
+                <mat-error *ngIf="myFormControls['item_price']?.invalid">
+                    {{getErrorMessage(myFormControls['item_price'])}}
                 </mat-error>
                 <button matSuffix mat-icon-button aria-label="Clear">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
+
+            <!--#endregion-->
+
+            <!--#region item_quantity-->
+            <mat-form-field class="example-form-field col" appearance="outline">
+                <mat-label>Item quantity</mat-label>
+                <input matInput required type="text" formControlName="item_quantity">
+                <mat-error *ngIf="myFormControls['item_quantity']?.invalid">
+                    {{getErrorMessage(myFormControls['item_quantity'])}}
+                </mat-error>
+                <button matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <!--#endregion-->
+
         </div>
+
+        <!--#endregion-->
+
+        <!--#region discription-->
+
         <div class="row">
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Description</mat-label>
                 <textarea matInput required type="text" formControlName="discription"></textarea>
-                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['discription'])}}
+                <mat-error *ngIf="myFormControls['discription']?.invalid">
+                    {{getErrorMessage(myFormControls['discription'])}}
                 </mat-error>
                 <button matSuffix mat-icon-button aria-label="Clear">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
         </div>
+        <!--#endregion-->
     </form>
+
+    <!--#endregion-->
+    
 </mat-dialog-content>
+
+<!--#endregion-->
+
+<!--#region dialog action btns-->
+
 <mat-dialog-actions>
-    <button mat-raised-button color="primary" class="ms-4">Save</button>
+    <button mat-raised-button color="primary">Save</button>
     <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
+
+<!--#endregion-->

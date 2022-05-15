@@ -1,5 +1,7 @@
+//angular modules
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-customer-item-details',
@@ -11,19 +13,25 @@ export class CustomerItemDetailsComponent implements OnInit {
   //#region variavles
 
   myForm!: FormGroup;
-
+  id:any;
+  formData!: {};
   //#endregion
 
   //#region constructor
+
   constructor(
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
   )
    {
+    this.id = this.route.snapshot.params['id'];
      this.initForm()
     }
+
     //#endregion
 
     //#region init form
+
   initForm(){
     this.myForm = this.formBuilder.group({
       item_name: ['', [Validators.required]],
@@ -32,6 +40,10 @@ export class CustomerItemDetailsComponent implements OnInit {
       item_quantity: ['', [Validators.required]],
       discription: ['', [Validators.required]]
     })
+
+    this.formData = this.myForm.value 
+    console.log(this.id)
+    console.log(this.formData)
   }
 
 
