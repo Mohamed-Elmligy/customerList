@@ -1,11 +1,12 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
+import { CustomerDto } from '../models/customer.model';
 
 @Injectable({
   providedIn: 'root'
 })
-
+//
 export class CustomersService {
  
   public customerKey: any;
@@ -19,27 +20,34 @@ export class CustomersService {
       })
     };
   }
+  
 
+  // get all customers
   getAllCustomers(){
     return this.httpClient.get(`${environment.APIURL}/customers.json`)
   }
 
-  postCustomer(newCustomer:any){
+
+
+  //create new customers
+  createCustomer(newCustomer:any){
     return this.httpClient.post(`${environment.APIURL}/customers.json`, newCustomer
     )
   }
 
-  getkey(key:any){
-    console.log(key)
-    this.customerKey = key
-    console.log(this.customerKey)
+
+    //get by customer id
+    getCustomerByID(id:any) {
+      return this.httpClient.get<CustomerDto>(`${environment.APIURL}/customers/${id}.json`)
+    }
+
+  //update customer
+  updateCustomer(newdata:any, id:any) {
+    return this.httpClient.put(`${environment.APIURL}/customers/${id}.json`, newdata)
   }
 
-  updateCustomer(newdata:any) {
-    console.log(this.customerKey)
-    return this.httpClient.put(`${environment.APIURL}/customers/${this.customerKey}.json`, newdata)
-  }
 
+  //delete castomer
  deleteCustomer(customerID: any) {
    return this.httpClient.delete(`${environment.APIURL}/customers/${customerID}.json`)
  }

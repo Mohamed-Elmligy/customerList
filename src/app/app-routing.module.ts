@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
-import { CustomerComponent } from './customer/customer.component';
+import { CustomerComponent } from './customer/customer-list/customer-list.component';
 
 const routes: Routes = [
-
-  {path:'', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login/list', component: CustomerDetailsComponent},
-  {path:'login', component:CustomerComponent},
+   
+    {path:'customer/list', component:CustomerComponent},
+    {path: 'customer/add', component: CustomerDetailsComponent},
+    {path: 'customer/add/:ID', component: CustomerDetailsComponent},
+    {path:'', redirectTo: 'customer/list', pathMatch: 'full'},
+  // {path: '**', component:CustomerComponent}// Wild card path
+  
 ];
 
 @NgModule({

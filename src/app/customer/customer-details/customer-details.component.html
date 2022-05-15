@@ -1,73 +1,85 @@
-<div class="text-white">
-  value ={{myForm.value|json}}
-</div>
+<!--------------------------------- start customer details ---------------------->
 <div class="container">
-
+  <!--------------------------------- start customer form ---------------------->
   <form [formGroup]="myForm">
+    <!---------------------------------  customer header ---------------------->
+    <h1 class="text-white text-center">{{id?"Update Castomer":"Create Castomer"}}</h1>
+    <!--------------------------------------------------------------------------->
+    <!--------------------------------- start customer name and ID row ---------------------->
+    <div class="row">
+      <!---------------------------------  customer name ---------------------->
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Customer Name </mat-label>
+        <input matInput placeholder="Enter Your email" maxlength="30" required type="text" formControlName="customer_name"
+          class="text-white" [(ngModel)]="model.customer_name">
+        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+        <mat-hint>Min Name 2 letters and Max Nams 18 letters</mat-hint>
+        <mat-error *ngIf="myFormControls['customer_name']?.invalid">{{getErrorMessage(customer_name)}}</mat-error>
+        <mat-error *ngIf="customer_name?.errors?.['minlength'] && customer_name?.touched"> Customer Name is so short
+        </mat-error>
+        <mat-error *ngIf="customer_name?.errors?.['maxlength'] && customer_name?.touched"> Customer Name is so long
+        </mat-error>
+      </mat-form-field>
+      <!--------------------------------- name end---------------------->
+      <!---------------------------------  customer ID ---------------------->
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>ID Number </mat-label>
+        <input matInput placeholder="Enter your id" maxlength="14" required type="text" formControlName="id_number" class="text-white"  [(ngModel)]="model.id_number">
+        <mat-error *ngIf="id_number?.errors?.['minlength'] && id_number?.touched"> id Number is so short</mat-error>
+        <mat-error *ngIf="id_number?.errors?.['maxlength'] && id_number?.touched"> id Number is so long</mat-error>
+        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+        <mat-hint>14 Numbers required</mat-hint>
+        <mat-error *ngIf="id_number?.invalid">{{getErrorMessage(id_number)}}</mat-error>
+      </mat-form-field>
+      <!--------------------------------- ID end ---------------------->
+    </div>
+    <!--------------------------------- end customer namd and Id row ---------------------->
 
-    <h1 class="text-white text-center">Add Customer</h1>
+    <!--------------------------------- start customer phone and city row ---------------------->
+    <div class="row">
 
-  <div class="row">
-    
-    <mat-form-field appearance="outline" class="col">
-      <mat-label>Customer Name </mat-label>
-      <input matInput  placeholder="Placeholder" required type="text" formControlName="customer_name" class="text-white">
-      <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
-      <mat-hint>Min Name 2 letters and Max Nams 18 letters</mat-hint>
-      <mat-error *ngIf="customer_name?.invalid">{{getErrorMessage(customer_name)}}</mat-error>
-      <mat-error *ngIf="customer_name?.errors?.['minlength'] && customer_name?.touched"> Customer Name is so short</mat-error>
-      <mat-error *ngIf="customer_name?.errors?.['maxlength'] && customer_name?.touched"> Customer Name is so long</mat-error>
-    </mat-form-field>
-    
-    <mat-form-field appearance="outline" class="col">
-      <mat-label>ID Number </mat-label>
-      <input matInput placeholder="Placeholder" required type="text" formControlName="id_number" class="text-white">
-      <mat-error *ngIf="id_number?.errors?.['minlength'] && id_number?.touched"> id Number is so short</mat-error>
-      <mat-error *ngIf="id_number?.errors?.['maxlength'] && id_number?.touched"> id Number is so long</mat-error>
-      <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
-      <mat-hint>14 Numbers required</mat-hint>
-      <mat-error *ngIf="id_number?.invalid">{{getErrorMessage(id_number)}}</mat-error>
-    </mat-form-field>
-  </div>
+      <mat-form-field appearance="outline" class="col">
+        <!--------------------------------- start customer phone ---------------------->
+        <mat-label>Phone </mat-label>
+        <input matInput placeholder="enter your phone" maxlength="11" required type="text" [(ngModel)]="model.phone" formControlName="phone" class="text-white">
+        <mat-error *ngIf="phone?.errors?.['minlength'] && phone?.touched"> phone is so short</mat-error>
+        <mat-error *ngIf="phone?.errors?.['maxlength'] && phone?.touched"> phone is so long</mat-error>
+        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+        <mat-hint>Phone must be 11 numbers</mat-hint>
+        <mat-error *ngIf="phone?.invalid">{{getErrorMessage(phone)}}</mat-error>
+        <!--------------------------------- end customer phone ---------------------->
+      </mat-form-field>
 
-
-
-  <div class="row">
-    
-    <mat-form-field appearance="outline" class="col">
-      <mat-label>Phone </mat-label>
-      <input matInput placeholder="Placeholder" required type="text" formControlName="phone" class="text-white">
-      <mat-error *ngIf="phone?.errors?.['minlength'] && phone?.touched"> phone is so short</mat-error>
-      <mat-error *ngIf="phone?.errors?.['maxlength'] && phone?.touched"> phone is so long</mat-error>
-      <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
-      <mat-hint>Phone must be 11 numbers</mat-hint>
-      <mat-error *ngIf="phone?.invalid">{{getErrorMessage(phone)}}</mat-error>
-    </mat-form-field>
-    
-    <mat-form-field appearance="outline" class="col">
-      <mat-label>City </mat-label>
-      <input matInput placeholder="Placeholder" required type="text" formControlName="city" class="text-white">
-      <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="city?.invalid">{{getErrorMessage(city)}}</mat-error>
-      <mat-hint>Must Enter your city</mat-hint>
-    </mat-form-field>
-  </div>
-
-  <div class="row">
-    
-    <mat-form-field appearance="outline" class="col">
-      <mat-label>Adress </mat-label>
-      <textarea matInput placeholder="address" required type="text" formControlName="address" class="text-white"></textarea>
-      <mat-error *ngIf="address?.errors?.['minlength'] && address?.touched"> address name is so short</mat-error>
-      <mat-error *ngIf="address?.errors?.['maxlength'] && address?.touched"> address name is so long</mat-error>
-      <mat-hint>14 Letters required</mat-hint>
-      <mat-error *ngIf="address?.invalid">{{getErrorMessage(address)}}</mat-error>
-    </mat-form-field>
-  </div>
-
-  <a mat-raised-button color="primary" class="m-2" (click)="createcustomer()" >Save</a>
-  <a mat-raised-button color="warn" class="m-2" (click)="editCustomer()">Update</a>
-  <a mat-raised-button color="accent" routerLink="" class="m-2">Cancel</a>
+      <mat-form-field appearance="outline" class="col">
+        <!--------------------------------- start customer city ---------------------->
+        <mat-label>City </mat-label>
+        <input matInput placeholder="Enter your city" required type="text" formControlName="city" [(ngModel)]="model.city" class="text-white">
+        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="city?.invalid">{{getErrorMessage(city)}}</mat-error>
+        <mat-hint>Must Enter your city</mat-hint>
+        <!--------------------------------- end customer city ---------------------->
+      </mat-form-field>
+    </div>
+    <!--------------------------------- end customer phone and city row ---------------------->
+    <div class="row">
+      <mat-form-field appearance="outline" class="col">
+        <!--------------------------------- start customer address ------------------------>
+        <mat-label>Address </mat-label>
+        <textarea matInput minlength="4" maxlength="50" placeholder="address..." required type="text" formControlName="address"  [(ngModel)]="model.address" 
+          class="text-white"></textarea>
+        <mat-error *ngIf="address?.errors?.['minlength'] && address?.touched"> address name is so short 5 letters required</mat-error>
+        <mat-error *ngIf="address?.errors?.['maxlength'] && address?.touched"> address name is so long max letters 50</mat-error>
+        <mat-hint>at least 5 Letters required</mat-hint>
+        <mat-error *ngIf="address?.invalid">{{getErrorMessage(address)}}</mat-error>
+        <!--------------------------------- end customer address ---------------------->
+      </mat-form-field>
+      <!--------------------------------- end customer address row ---------------------->
+    </div>
+    <!--------------------------------- action btns ---------------------->
+    <a mat-raised-button color="primary" class="m-2" (click)="saveCustomer()" >{{id?'Update':'Save'}}</a>
+    <a mat-raised-button color="accent" routerLink="/customer/list" class="m-2">Cancel</a>
+    <!--------------------------------- ===================== ---------------------->
   </form>
- 
 </div>
+
+<!--------------------------------- end customer details ---------------------->
