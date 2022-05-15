@@ -1,46 +1,58 @@
 <h1 mat-dialog-title>Item Details</h1>
 <mat-dialog-content>
-    <div class="row">
-        <mat-form-field class="example-form-field col" appearance="outline">
-            <mat-label>Item Name</mat-label>
-            <input matInput required type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field class="example-form-field col" appearance="outline">
-            <mat-label>Item code</mat-label>
-            <input matInput required type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
-    <div class="row">
-        <mat-form-field class="example-form-field col" appearance="outline">
-            <mat-label>Item price</mat-label>
-            <input matInput required type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field class="example-form-field col" appearance="outline">
-            <mat-label>Item quantity</mat-label>
-            <input matInput required type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
-    <div class="row">
-        <mat-form-field class="example-form-field col" appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea matInput required type="text" [(ngModel)]="value"></textarea>
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
+    <form [formGroup]="myForm">
+        <div class="row">
+            <mat-form-field class="example-form-field col" appearance="outline">
+                <mat-label>Item Name</mat-label>
+                <input matInput required type="text"   formControlName="item_name">
+                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_name'])}}
+                </mat-error>
+                <button  matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="example-form-field col" appearance="outline">
+                <mat-label>Item code</mat-label>
+                <input matInput required type="text" formControlName="item_code">
+                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_code'])}}
+                </mat-error>
+                <button matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-form-field col" appearance="outline">
+                <mat-label>Item price</mat-label>
+                <input matInput required type="text"  formControlName="item_price">
+                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_price'])}}
+                </mat-error>
+                <button matSuffix mat-icon-button aria-label="Clear" >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="example-form-field col" appearance="outline">
+                <mat-label>Item quantity</mat-label>
+                <input matInput required type="text" formControlName="item_quantity">
+                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_quantity'])}}
+                </mat-error>
+                <button matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-form-field col" appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput required type="text" formControlName="discription"></textarea>
+                <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['discription'])}}
+                </mat-error>
+                <button matSuffix mat-icon-button aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </form>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-raised-button color="primary" class="ms-4">Save</button>
