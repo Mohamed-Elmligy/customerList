@@ -10,26 +10,27 @@
       <!---------------------------------  customer name ---------------------->
       <mat-form-field appearance="outline" class="col">
         <mat-label>Customer Name </mat-label>
-        <input matInput placeholder="Enter Your email" maxlength="30" required type="text" formControlName="customer_name"
-          class="text-white" [(ngModel)]="model.customer_name">
-        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+        <input matInput placeholder="Enter Your email" maxlength="30" required type="text"
+          formControlName="customer_name" class="text-white" [(ngModel)]="model.customer_name">
+        <mat-icon matSuffix class="text-white">account_circle</mat-icon>
         <mat-hint>Min Name 2 letters and Max Nams 18 letters</mat-hint>
-        <mat-error *ngIf="myFormControls['customer_name']?.invalid">{{getErrorMessage(customer_name)}}</mat-error>
-        <mat-error *ngIf="customer_name?.errors?.['minlength'] && customer_name?.touched"> Customer Name is so short
+        <mat-error *ngIf="myFormControls['customer_name']?.invalid">{{getErrorMessage(myFormControls['customer_name'])}}</mat-error>
+        <mat-error *ngIf="myFormControls['customer_name']?.errors?.['minlength'] && myFormControls['customer_name']?.touched"> Customer Name is so short
         </mat-error>
-        <mat-error *ngIf="customer_name?.errors?.['maxlength'] && customer_name?.touched"> Customer Name is so long
+        <mat-error *ngIf="myFormControls['customer_name']?.errors?.['maxlength'] && myFormControls['customer_name']?.touched"> Customer Name is so long
         </mat-error>
       </mat-form-field>
       <!--------------------------------- name end---------------------->
       <!---------------------------------  customer ID ---------------------->
       <mat-form-field appearance="outline" class="col">
         <mat-label>ID Number </mat-label>
-        <input matInput placeholder="Enter your id" maxlength="14" required type="text" formControlName="id_number" class="text-white"  [(ngModel)]="model.id_number">
-        <mat-error *ngIf="id_number?.errors?.['minlength'] && id_number?.touched"> id Number is so short</mat-error>
-        <mat-error *ngIf="id_number?.errors?.['maxlength'] && id_number?.touched"> id Number is so long</mat-error>
-        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+        <input matInput placeholder="Enter your id" maxlength="14" required type="text" formControlName="id_number"
+          class="text-white" [(ngModel)]="model.id_number">
+        <mat-error *ngIf="myFormControls['id_number']?.errors?.['minlength'] && myFormControls['id_number']?.touched"> id Number is so short</mat-error>
+        <mat-error *ngIf="myFormControls['id_number']?.errors?.['maxlength'] && myFormControls['id_number']?.touched"> id Number is so long</mat-error>
+        <mat-icon matSuffix class="text-white">assignment_ind</mat-icon>
         <mat-hint>14 Numbers required</mat-hint>
-        <mat-error *ngIf="id_number?.invalid">{{getErrorMessage(id_number)}}</mat-error>
+        <mat-error *ngIf="myFormControls['id_number']?.invalid">{{getErrorMessage(myFormControls['id_number'])}}</mat-error>
       </mat-form-field>
       <!--------------------------------- ID end ---------------------->
     </div>
@@ -41,21 +42,23 @@
       <mat-form-field appearance="outline" class="col">
         <!--------------------------------- start customer phone ---------------------->
         <mat-label>Phone </mat-label>
-        <input matInput placeholder="enter your phone" maxlength="11" required type="text" [(ngModel)]="model.phone" formControlName="phone" class="text-white">
-        <mat-error *ngIf="phone?.errors?.['minlength'] && phone?.touched"> phone is so short</mat-error>
-        <mat-error *ngIf="phone?.errors?.['maxlength'] && phone?.touched"> phone is so long</mat-error>
-        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
+        <input matInput placeholder="enter your phone" maxlength="11" required type="text" [(ngModel)]="model.phone"
+          formControlName="phone" class="text-white">
+        <mat-error *ngIf="myFormControls['phone']?.errors?.['minlength'] && myFormControls['phone']?.touched"> phone is so short</mat-error>
+        <mat-error *ngIf="myFormControls['phone']?.errors?.['maxlength'] && myFormControls['phone']?.touched"> phone is so long</mat-error>
+        <mat-icon matSuffix class="text-white">phone</mat-icon>
         <mat-hint>Phone must be 11 numbers</mat-hint>
-        <mat-error *ngIf="phone?.invalid">{{getErrorMessage(phone)}}</mat-error>
+        <mat-error *ngIf="myFormControls['phone']?.invalid">{{getErrorMessage(myFormControls['phone'])}}</mat-error>
         <!--------------------------------- end customer phone ---------------------->
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col">
         <!--------------------------------- start customer city ---------------------->
         <mat-label>City </mat-label>
-        <input matInput placeholder="Enter your city" required type="text" formControlName="city" [(ngModel)]="model.city" class="text-white">
-        <mat-icon matSuffix class="text-white">sentiment_very_satisfied</mat-icon>
-        <mat-error *ngIf="city?.invalid">{{getErrorMessage(city)}}</mat-error>
+        <input matInput placeholder="Enter your city" required type="text" formControlName="city"
+          [(ngModel)]="model.city" class="text-white">
+        <mat-icon matSuffix class="text-white">location_city</mat-icon>
+        <mat-error *ngIf="myFormControls['city']?.invalid">{{getErrorMessage(myFormControls['city'])}}</mat-error>
         <mat-hint>Must Enter your city</mat-hint>
         <!--------------------------------- end customer city ---------------------->
       </mat-form-field>
@@ -65,21 +68,32 @@
       <mat-form-field appearance="outline" class="col">
         <!--------------------------------- start customer address ------------------------>
         <mat-label>Address </mat-label>
-        <textarea matInput minlength="4" maxlength="50" placeholder="address..." required type="text" formControlName="address"  [(ngModel)]="model.address" 
-          class="text-white"></textarea>
-        <mat-error *ngIf="address?.errors?.['minlength'] && address?.touched"> address name is so short 5 letters required</mat-error>
-        <mat-error *ngIf="address?.errors?.['maxlength'] && address?.touched"> address name is so long max letters 50</mat-error>
+        <textarea matInput minlength="4" maxlength="50" placeholder="address..." required type="text"
+          formControlName="address" [(ngModel)]="model.address" class="text-white"></textarea>
+          <mat-icon matSuffix class="text-white">text_rotation_none</mat-icon>
+        <mat-error *ngIf="myFormControls['address']?.errors?.['minlength'] && myFormControls['address']?.touched"> address name is so short 5 letters
+          required</mat-error>
+        <mat-error *ngIf="myFormControls['address']?.errors?.['maxlength'] && myFormControls['address']?.touched"> address name is so long max letters 50
+        </mat-error>
         <mat-hint>at least 5 Letters required</mat-hint>
-        <mat-error *ngIf="address?.invalid">{{getErrorMessage(address)}}</mat-error>
+        <mat-error *ngIf="myFormControls['address']?.invalid">{{getErrorMessage(myFormControls['address'])}}</mat-error>
         <!--------------------------------- end customer address ---------------------->
-      </mat-form-field>
+      </mat-form-field> 
       <!--------------------------------- end customer address row ---------------------->
     </div>
     <!--------------------------------- action btns ---------------------->
-    <a mat-raised-button color="primary" class="m-2" (click)="saveCustomer()" >{{id?'Update':'Save'}}</a>
-    <a mat-raised-button color="accent" routerLink="/customer/list" class="m-2">Cancel</a>
+    <div class="row">
+      <a mat-raised-button color="primary" class="m-2 col-1" (click)="saveCustomer()">{{id?'Update':'Save'}}</a>
+      <a mat-raised-button color="accent" routerLink="/customer/list" class="m-2 col-1">Cancel</a>
+      <div class="col-2 offset-7 text-white fw-bolder me-0"> Add Customer Item?
+        <div class="btn btn-primary ms-2 col-1 btnItem" (click)="openDialogItem()">+</div>
+      </div>
+    </div>
     <!--------------------------------- ===================== ---------------------->
   </form>
+  <!--------------------------------- start customer item list ---------------------->
+    <app-customer-item-list [list]="model.items"></app-customer-item-list>  
+  <!--------------------------------- ------------------------ ---------------------->
 </div>
 
 <!--------------------------------- end customer details ---------------------->

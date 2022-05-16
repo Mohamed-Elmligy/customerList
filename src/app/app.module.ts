@@ -25,6 +25,10 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { CreateDialogeComponent } from './dialog/create-dialoge/create-dialoge.component';
+import { CustomerItemListComponent } from './customer-item/customer-item-list/customer-item-list.component';
+import { CustomerItemDetailsComponent } from './customer-item/customer-item-details/customer-item-details.component';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -33,9 +37,11 @@ import { CreateDialogeComponent } from './dialog/create-dialoge/create-dialoge.c
     CustomerComponent,
     CustomerDetailsComponent,
     CreateDialogeComponent,
+    CustomerItemListComponent,
+    CustomerItemDetailsComponent,
   ],
   imports: [
-    BrowserModule,
+    [BrowserModule,/* or CommonModule */],
     HttpClientModule ,
     AppRoutingModule,
     FormsModule,
@@ -47,7 +53,9 @@ import { CreateDialogeComponent } from './dialog/create-dialoge/create-dialoge.c
     MatCheckboxModule,
     MatChipsModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule,
+    MatCardModule
 
   ],
   providers: [

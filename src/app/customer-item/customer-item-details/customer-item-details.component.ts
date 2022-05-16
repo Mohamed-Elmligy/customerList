@@ -1,6 +1,8 @@
+import { CustomerItem } from './../../models/customer.item.model';
 //angular modules
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,8 +15,9 @@ export class CustomerItemDetailsComponent implements OnInit {
   //#region variavles
 
   myForm!: FormGroup;
-  id:any;
-  formData!: {};
+  id: any;
+  model: CustomerItem;
+  
   //#endregion
 
   //#region constructor
@@ -22,17 +25,19 @@ export class CustomerItemDetailsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-  )
-   {
+    public dialogRef: MatDialogRef<CustomerItemDetailsComponent>,
+
+  ) {
+    this.model = new CustomerItem;
     this.id = this.route.snapshot.params['id'];
-     this.initForm()
-    }
+    this.initForm()
+  }
 
-    //#endregion
+  //#endregion
 
-    //#region init form
+  //#region init form
 
-  initForm(){
+  initForm() {
     this.myForm = this.formBuilder.group({
       item_name: ['', [Validators.required]],
       item_code: ['', [Validators.required]],
@@ -41,12 +46,13 @@ export class CustomerItemDetailsComponent implements OnInit {
       discription: ['', [Validators.required]]
     })
 
-    this.formData = this.myForm.value 
-    console.log(this.id)
-    console.log(this.formData)
   }
 
+  get myFormControls() {
+    return this.myForm.controls;
+  }
 
+  //error message validation
   getErrorMessage(t: any) {
     if (t?.hasError('required')) {
       return 'You must enter a value';
@@ -55,13 +61,28 @@ export class CustomerItemDetailsComponent implements OnInit {
   }
 
 
-  get myFormControls() {
-    return this.myForm.controls;
-  }
+ 
 
   //#endregion
 
+  // #region ngOnit
+  
   ngOnInit(): void {
   }
+
+  //##endregion
+
+  // #region actions functions
+
+  saveCustomerItem(model: any) {
+    this.dialogRef.close({ model });
+    console.log(model)
+  }
+
+  closeCustomerItem() {
+    this.dialogRef.close()
+  }
+
+  //#endregion
 
 }

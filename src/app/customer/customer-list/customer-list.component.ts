@@ -13,36 +13,51 @@ import { CustomersService } from '../../services/customers.service'
 export class CustomerComponent implements OnInit {
 
   // #region declare variables
+
   customerList: {} = {};
+  
   // #endregion
 
   // #region constructor
+
   constructor(
     private allcustomer: CustomersService
   ) { }
+
   // #endregion
 
   // #region ngOnInit
+
   ngOnInit(): void {
-    this.listAllCustomers();
+    this.loadControls();
   }
 
-  listAllCustomers() {
+  // #endregion
+
+  // #region load controls
+
+  loadControls() {
+    this.getAllCustomers();
+  }
+  getAllCustomers() {
     this.allcustomer.getAllCustomers().subscribe(customers => { this.customerList = customers })
   }
+  
   // #endregion
 
   // #region main actions
+
   getData(object: any, key: string) {
     return object[key];
   }
 
   deleteThatCustomer(cusID: any) {
     this.allcustomer.deleteCustomer(cusID).subscribe(() => {
-      this.listAllCustomers();
+      this.getAllCustomers();
       console.log(cusID)
     })
   }
+
   // #endregion
 
 }

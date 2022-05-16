@@ -10,6 +10,7 @@ import { CreateDialogeComponent } from '../../dialog/create-dialoge/create-dialo
 
 // services
 import { CustomersService } from '../../services/customers.service';
+import { CustomerItemDetailsComponent } from 'src/app/customer-item/customer-item-details/customer-item-details.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -24,6 +25,7 @@ export class CustomerDetailsComponent implements OnInit {
   routeSub: any;
   id: any;
   model: CustomerDto;
+  customerItem:{}={};
 
   // #endregion
 
@@ -33,10 +35,16 @@ export class CustomerDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private customersService: CustomersService,
     public dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     // init variables
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['id']; //easy way to get id from url
+
+    // this.routeSub = this.route.params.subscribe(params => {  ||====>  //another way to get id from url ====||
+    //   console.log(params) //log the entire params object
+    //   console.log(params['id']) //log the value of id
+    //   this.id = params['id'];
+    // });
     this.model = new CustomerDto;
 
     // init forms
@@ -65,29 +73,29 @@ export class CustomerDetailsComponent implements OnInit {
     return t?.hasError('') ? 'Not a valid' : '';
   }
 
-  get myFormControls() {
-    return this.myForm.controls;
-  }
-  get customer_name() {
-    return this.myForm.get('customer_name')
-  }
+   get myFormControls() {
+     return this.myForm.controls;
+   }
+  // get customer_name() {
+  //   return this.myForm.get('customer_name')
+  // }
 
-  get id_number() {
-    return this.myForm.get('id_number')
-  }
+  // get id_number() {
+  //   return this.myForm.get('id_number')
+  // }
 
-  get phone() {
-    return this.myForm.get('phone')
-  }
+  // get phone() {
+  //   return this.myForm.get('phone')
+  // }
 
-  get city() {
-    return this.myForm.get('city')
-  }
+  // get city() {
+  //   return this.myForm.get('city')
+  // }
 
-  get address() {
-    return this.myForm.get('address')
+  // get address() {
+  //   return this.myForm.get('address')
 
-  }
+  // }
 
   // #endregion
 
@@ -109,6 +117,7 @@ export class CustomerDetailsComponent implements OnInit {
     if (this.id) {
       this.customersService.getCustomerByID(this.id).subscribe((data:CustomerDto) => {
         this.model = data;
+        if(!this.model.items) this.model.items = [];
       });
     }
   }
@@ -140,5 +149,17 @@ export class CustomerDetailsComponent implements OnInit {
     })
   }
 
+  openDialogItem(){
+   const dialogRef = this.dialog.open(CustomerItemDetailsComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result.model)
+      this.model.items.push(result.model)
+      console.log(this.model)
+      console.log(this.model.items)
+    });
+
+  }
+
   // #endregion
+  
 }
