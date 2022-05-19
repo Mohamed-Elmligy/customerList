@@ -7,7 +7,7 @@ const routes: Routes = [
    
     {path:'customer/list', component:CustomerComponent},
     {path: 'customer/add', component: CustomerDetailsComponent},
-    {path: 'customer/add/:id', component: CustomerDetailsComponent},
+    {path: 'customer/update/:id', component: CustomerDetailsComponent},
     {path:'', redirectTo: 'customer/list', pathMatch: 'full'},
   // {path: '**', component:CustomerComponent}// Wild card path
   

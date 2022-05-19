@@ -1,20 +1,19 @@
-<!-- #region herder -->
+<!---------------------------------- #region herder ---------------------------------->
 
 <p class="text-white text-center fs-5">{{list.length==0 ? '': 'Customer Items'}}</p>
 
-<!--#endregion-->
+<!---------------------------------- #endregion ---------------------------------->
 
-<!--#region list-->
+<!---------------------------------- #region list ---------------------------------->
 
 <mat-list *ngFor="let item of list; let i = index;">
     <mat-list-item>
         <p>Item name: {{item.item_name}}</p>
 
-        <!--#region btn action-->
+        <!---------------------------------- #region btn action ---------------------------------->
 
         <div class="ms-auto">
-            <button mat-icon-button color="primary" aria-label="edite icon"
-                (click)="openDialogeDetails()">
+            <button mat-icon-button color="primary" aria-label="edite icon" (click)="updateItem(item, i)">
                 <mat-icon>edite</mat-icon>
             </button>
             <button mat-icon-button color="warn" aria-label="delete icon" (click)="deleteItem(i)">
@@ -22,13 +21,13 @@
             </button>
         </div>
 
-        <!--#endregion-->
+        <!---------------------------------- #endregion ---------------------------------->
 
     </mat-list-item>
     <mat-divider></mat-divider>
 
-    <!--#endregion-->
+    <!---------------------------------- #endregion ---------------------------------->
 
 </mat-list>
 
-<!--#endregion-->
+<!---------------------------------- #endregion ---------------------------------->

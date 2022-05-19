@@ -4,4 +4,5 @@ export class CustomerItem {
     item_price!: string;
     item_quantity!: string;
     discription!: string;
+    id!: number;
 }

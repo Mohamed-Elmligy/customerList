@@ -2,33 +2,48 @@
 
 <div class="container top-space">
   <div class="row">
+
+    <!--------------------------------- header ------------------------>
+
     <h1 class="col-3" class="text-white my-2 text-center">Customer App</h1>
+
+    <!--------------------------------- create customer section ------------------------>
+
     <div class="col-1 mt-3 ms-auto ">
+
+      <!--------------------------------- create customer button ------------------------>
+
       <a class=" btn btn-primary my-4" routerLink="/customer/add">+</a>
     </div>
   </div>
   <table class="table table-dark table-striped">
     <thead>
+
       <!--------------------------------- table header ------------------------>
+
       <tr>
         <th scope="col">#</th>
         <th scope="col">Customer Name</th>
         <th scope="col">City</th>
-        <th scope="col">Adress</th>
+        <th scope="col">Address</th>
         <th scope="col">Phone</th>
         <th scope="col align-middle ms-auto">Actions</th>
       </tr>
     </thead>
     <tbody>
+
       <!--------------------------------- table body ---------------------->
+
       <tr *ngFor="let customer of customerList| keyvalue ;let i=index">
         <th scope="row">{{i+1}}</th>
         <td>{{getData(customer.value,'customer_name')}}</td>
         <td>{{getData(customer.value,'city')}}</td>
-        <td>{{getData(customer.value,'phone')}}</td>
         <td>{{getData(customer.value,'address')}}</td>
+        <td>{{getData(customer.value,'phone')}}</td>
         <td>
+
           <!--------------------------------- action btns edit & remove ---------------------->
+
           <a class="btn btn-info me-1" [routerLink]="['/customer/add', customer.key]">Edit</a>
           <a class="btn btn-danger" (click)="deleteThatCustomer(customer.key)">Remove</a>
         </td>
@@ -36,5 +51,3 @@
     </tbody>
   </table>
 </div>
-
-<!-- end customer list  -->

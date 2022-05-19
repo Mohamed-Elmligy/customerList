@@ -1,4 +1,9 @@
+//angular modules
+
 import { Component, Inject, OnInit, Optional } from '@angular/core';
+
+//angular material modules
+
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -8,9 +13,17 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class CreateDialogeComponent implements OnInit {
 
-  constructor( @Optional() @Inject(MAT_DIALOG_DATA) public data: { message: string }) { }
+  //#region constructor
+
+  constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: { message: string }) { }
+
+  //#endregion
+
+  //#region ngInit
 
   ngOnInit(): void {
   }
+
+  //#endregion
 
 }

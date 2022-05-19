@@ -1,26 +1,27 @@
-<!--#region item dialog header-->
+<!-------------------------------- #region item dialog header ----------------------------->
 
 <h1 mat-dialog-title>Item Details</h1>
 
-<!--#endregion-->
+<!-------------------------------- #endregion item dialog header --------------------------->
 
-<!--#region dialog content-->
+<!-------------------------------- #region dialog content ----------------------------------->
 
 <mat-dialog-content>
 
-    <!--#region item dialog form-->
+    <!--------------------------- #region item dialog form ----------------------------------->
 
-    <form [formGroup]="myForm">
+    <form [formGroup]="form">
 
-        <!--#region item_name & item_code-->
+        <!---------------------- #region item_name & item_code ------------------------------->
 
         <div class="row">
 
-            <!--#region item_name-->
+            <!----------------- #region item_name --------------------------------------------->
 
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Item Name</mat-label>
-                <input matInput required #inputName type="text" formControlName="item_name" [(ngModel)]="model.item_name">
+                <input matInput required #inputName type="text" formControlName="item_name"
+                    [(ngModel)]="model.item_name">
                 <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_name'])}}
                 </mat-error>
                 <button matSuffix mat-icon-button (click)="inputName.value=''" aria-label="Clear">
@@ -28,13 +29,14 @@
                 </button>
             </mat-form-field>
 
-            <!--#endregion-->
+            <!----------------- #endregion item_name ------------------------------------------>
 
-            <!--#region item_code-->
+            <!----------------- #region item_code --------------------------------------------->
 
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Item code</mat-label>
-                <input matInput #inputCode required type="text" formControlName="item_code" [(ngModel)]="model.item_code">
+                <input matInput #inputCode required type="text" formControlName="item_code"
+                    [(ngModel)]="model.item_code">
                 <mat-error *ngIf="myFormControls['item_name']?.invalid">{{getErrorMessage(myFormControls['item_code'])}}
                 </mat-error>
                 <button matSuffix (click)="inputCode.value=''" mat-icon-button aria-label="Clear">
@@ -42,20 +44,21 @@
                 </button>
             </mat-form-field>
 
-            <!--#endregion-->
+            <!------------------------------- #endregion item_code -------------------------------->
 
         </div>
-        <!--#endregion-->
+        <!--------------------------- #endregion item_name & item_code ----------------------------->
 
-        <!--#region item_price & item_quantity-->
+        <!-------------------------- #region item_price & item_quantity ----------------------------->
 
         <div class="row">
 
-            <!--#region item_price-->
+            <!---------------------------------- #region item_price ---------------------------------->
 
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Item price</mat-label>
-                <input matInput #inputPrice required type="text" formControlName="item_price" [(ngModel)]="model.item_price">
+                <input matInput #inputPrice required type="text" formControlName="item_price"
+                    [(ngModel)]="model.item_price">
                 <mat-error *ngIf="myFormControls['item_price']?.invalid">
                     {{getErrorMessage(myFormControls['item_price'])}}
                 </mat-error>
@@ -64,12 +67,13 @@
                 </button>
             </mat-form-field>
 
-            <!--#endregion-->
+            <!---------------------------------- #endregion ---------------------------------->
 
-            <!--#region item_quantity-->
+            <!---------------------------------- #region item_quantity ---------------------------------->
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Item quantity</mat-label>
-                <input matInput #inputQuantity required type="text" formControlName="item_quantity" [(ngModel)]="model.item_quantity">
+                <input matInput #inputQuantity required type="text" formControlName="item_quantity"
+                    [(ngModel)]="model.item_quantity">
                 <mat-error *ngIf="myFormControls['item_quantity']?.invalid">
                     {{getErrorMessage(myFormControls['item_quantity'])}}
                 </mat-error>
@@ -78,18 +82,19 @@
                 </button>
             </mat-form-field>
 
-            <!--#endregion-->
+            <!---------------------------------- #endregion ---------------------------------->
 
         </div>
 
-        <!--#endregion-->
+        <!---------------------------------- #endregion ---------------------------------->
 
-        <!--#region discription-->
+        <!---------------------------------- #region discription ---------------------------------->
 
         <div class="row">
             <mat-form-field class="example-form-field col" appearance="outline">
                 <mat-label>Description</mat-label>
-                <textarea matInput required #inputDescrption type="text" formControlName="discription" [(ngModel)]="model.discription"></textarea>
+                <textarea matInput required #inputDescrption type="text" formControlName="discription"
+                    [(ngModel)]="model.discription"></textarea>
                 <mat-error *ngIf="myFormControls['discription']?.invalid">
                     {{getErrorMessage(myFormControls['discription'])}}
                 </mat-error>
@@ -97,21 +102,27 @@
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
+
+            <mat-form-field class="example-form-field col" appearance="outline">
+                <mat-label>ID</mat-label>
+                <input matInput disable #inputDescrption type="text" formControlName="id">
+            </mat-form-field>
         </div>
-        <!--#endregion-->
+
+        <!---------------------------------- #endregion ---------------------------------->
     </form>
 
-    <!--#endregion-->
-    
+    <!---------------------------------- #endregion ---------------------------------->
+
 </mat-dialog-content>
 
-<!--#endregion-->
+<!---------------------------------- #endregion ---------------------------------->
 
-<!--#region dialog action btns-->
+<!---------------------------------- #region dialog action btns ---------------------------------->
 
 <mat-dialog-actions>
     <button mat-raised-button color="primary" (click)="saveCustomerItem(model)">Save</button>
-    <button mat-button mat-dialog-close (click)="closeCustomerItem()" >Close</button>
+    <button mat-button mat-dialog-close (click)="closeCustomerItem()">Close</button>
 </mat-dialog-actions>
 
-<!--#endregion-->
+<!---------------------------------- #endregion ---------------------------------->

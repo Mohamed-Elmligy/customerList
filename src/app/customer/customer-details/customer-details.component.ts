@@ -1,14 +1,18 @@
 import { CustomerDto } from './../../models/customer.model';
+
 // angualr modules
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 // components
+
 import { CreateDialogeComponent } from '../../dialog/create-dialoge/create-dialoge.component';
 
 // services
+
 import { CustomersService } from '../../services/customers.service';
 import { CustomerItemDetailsComponent } from 'src/app/customer-item/customer-item-details/customer-item-details.component';
 
@@ -21,11 +25,10 @@ export class CustomerDetailsComponent implements OnInit {
 
   // #region declare variables
 
-  myForm!: FormGroup;
+  form!: FormGroup;
   routeSub: any;
   id: any;
   model: CustomerDto;
-  customerItem:{}={};
 
   // #endregion
 
@@ -37,27 +40,23 @@ export class CustomerDetailsComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
   ) {
-    // init variables
-    this.id = this.route.snapshot.params['id']; //easy way to get id from url
 
-    // this.routeSub = this.route.params.subscribe(params => {  ||====>  //another way to get id from url ====||
-    //   console.log(params) //log the entire params object
-    //   console.log(params['id']) //log the value of id
-    //   this.id = params['id'];
-    // });
+    // init variables
+
+    this.id = this.route.snapshot.params['id']; //easy way to get id from url
     this.model = new CustomerDto;
 
     // init forms
+
     this.initForm();
   }
 
   // #endregion
 
-  
   // #region init form
 
   initForm() {
-    this.myForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       customer_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       id_number: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
@@ -67,15 +66,15 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   getErrorMessage(t: any) {
-    if (t?.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return t?.hasError('') ? 'Not a valid' : '';
+    return (t?.hasError('required')) ? 'You must enter a value' : t?.hasError('') ? 'Not a valid' : '';
   }
 
-   get myFormControls() {
-     return this.myForm.controls;
-   }
+  get myFormControls() {
+    return this.form.controls;
+  }
+
+  //just fom example
+
   // get customer_name() {
   //   return this.myForm.get('customer_name')
   // }
@@ -114,34 +113,25 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   getCustomerByID() {
-    if (this.id) {
-      this.customersService.getCustomerByID(this.id).subscribe((data:CustomerDto) => {
-        this.model = data;
-        if(!this.model.items) this.model.items = [];
-      });
-    }
+    (this.id) && this.customersService.getCustomerByID(this.id).subscribe((data: CustomerDto) => {
+      this.model = data;
+      (!this.model.items) ? this.model.items = [] : null
+    });
+
   }
 
   // #endregion
 
   // #region main actions
 
-  saveCustomer() {
-    if (this.id) this.updateCustomer();
-    else this.createCustomer();
-  }
+  saveCustomer = () => (this.id) ? this.updateCustomer() : this.createCustomer();
+  
 
-  updateCustomer() {
-    this.customersService.updateCustomer(this.myForm.value, this.id).subscribe(() => {
-      this.openDialog("You Update that customer");
-    });
-  }
+  updateCustomer = () => this.customersService.updateCustomer(this.model, this.id).subscribe(() => this.openDialog("You Update that customer"));
+  
 
-  createCustomer() {
-    this.customersService.createCustomer(this.myForm.value).subscribe(() => {
-      this.openDialog("You create New customer, Want to create one more?");
-    });
-  }
+  createCustomer = () => this.customersService.createCustomer(this.model).subscribe(() => this.openDialog("You create New customer"));
+  
 
   openDialog(message: string) {
     this.dialog.open(CreateDialogeComponent, {
@@ -149,17 +139,19 @@ export class CustomerDetailsComponent implements OnInit {
     })
   }
 
-  openDialogItem(){
-   const dialogRef = this.dialog.open(CustomerItemDetailsComponent)
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result.model)
-      this.model.items.push(result.model)
-      console.log(this.model)
-      console.log(this.model.items)
-    });
+  // #endregion
 
+  //#region item actions
+
+  createItem() {
+    const dialogRef = this.dialog.open(CustomerItemDetailsComponent)
+    dialogRef.afterClosed().subscribe(result => (result != undefined) ? this.model.items.push(result.model) : null);
+
+    //or
+
+    // (result == undefined) && null && this.model.items.push(result.model)
   }
 
-  // #endregion
-  
+  //#endregion
+
 }

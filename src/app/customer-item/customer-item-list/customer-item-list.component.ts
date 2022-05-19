@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
-//import modules
+// components
 
 import { CustomerItemDetailsComponent } from '../customer-item-details/customer-item-details.component';
 
@@ -18,7 +18,7 @@ import { CustomerItemDetailsComponent } from '../customer-item-details/customer-
 })
 export class CustomerItemListComponent implements OnInit {
 
-  //#region variables 
+  //#region declare variables 
 
   @Input() list!: CustomerItem[];
 
@@ -44,12 +44,22 @@ export class CustomerItemListComponent implements OnInit {
 
   //#region actions functions 
 
-  openDialogeDetails() {
-    this.dialog.open(CustomerItemDetailsComponent)
+  updateItem(item: CustomerItem, indx: number) {
+    const dialogRef = this.dialog.open(CustomerItemDetailsComponent, {
+      data: { item: Object.assign({}, item), indx: indx }
+    }
+    )
+
+    dialogRef.afterClosed().subscribe(result => result ? this.list[indx] = result.model : null);
+
+    //or
+
+    // (result == undefined) && null && (this.list[indx] = result.model)
   }
-  deleteItem(index: number) {
-    this.list.splice(index)
-  }
+
+  deleteItem = (index: number) => this.list.splice(index, 1)
 
   //#endregion
 }
+
+

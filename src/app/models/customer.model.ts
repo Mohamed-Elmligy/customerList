@@ -6,7 +6,7 @@ export class CustomerDto {
     phone!: string;
     city!: string;
     address!: string;
-    items:CustomerItem[];
+    items: CustomerItem[];
     constructor() {
         this.items = [];
     }
