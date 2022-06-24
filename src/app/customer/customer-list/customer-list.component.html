@@ -44,7 +44,7 @@
 
           <!--------------------------------- action btns edit & remove ---------------------->
 
-          <a class="btn btn-info me-1" [routerLink]="['/customer/add', customer.key]">Edit</a>
+          <a class="btn btn-info me-1" [routerLink]="['/customer/update', customer.key]">Edit</a>
           <a class="btn btn-danger" (click)="deleteThatCustomer(customer.key)">Remove</a>
         </td>
       </tr>

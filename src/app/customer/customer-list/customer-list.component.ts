@@ -44,7 +44,7 @@ export class CustomerComponent implements OnInit {
 
   // #region main actions
 
-  getData = (object: any, key: string) => object[key];
+  getData = (object: any, key: string) => object[key]; 
   
   deleteThatCustomer = (cusID: any) => this.allcustomer.deleteCustomer(cusID).subscribe(() => this.getAllCustomers())
 
